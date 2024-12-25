@@ -12,9 +12,11 @@ export default function KanbanBoardPage(params: {params: { appId: string}}) {
     const router = useRouter();
     const session = useSession()
     useEffect(() => {
-        getAchievementData({appId: params.params.appId}, session.data).then((resp) => {
-            setAchievements(resp);
-        }).catch(() => router.push("/"))
+        if (session.status === "authenticated") {
+            getAchievementData({appId: params.params.appId}, session.data).then((resp) => {
+                setAchievements(resp);
+            }).catch(() => router.push("/"))
+        }
     }, [params, router, session]);
 
     if (achievements == null) {
