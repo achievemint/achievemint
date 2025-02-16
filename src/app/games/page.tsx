@@ -1,6 +1,7 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import {CircularProgress} from "@mui/material";
+import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 import {Game} from "@/entities/Game";
 import getGames from "@/services/getGames";
 import Image from "next/image";
@@ -9,15 +10,20 @@ import {useRouter} from "next/navigation";
 import {useSession} from "next-auth/react";
 
 function GameCard({game}: { game: Game }): React.ReactElement {
+
+    const [isError, setError] = useState(false)
+
     return (
         <Link href={"/kanban/" + game.appId}>
             <div className={"flex flex-col w-60"}>
                 <div className={"relative w-60 h-96 bg-amber-800 rounded-sm"}>
-                    <Image fill={true}
-                           title={game.title}
-                           src={game.cover_img_url}
-                           className={"rounded-sm border-none"}
-                           alt={""}/>
+                    {!isError ? <Image fill={true}
+                                       title={game.title}
+                                       src={game.cover_img_url}
+                                       onError={() => setError(true)}
+                                       className={"rounded-sm border-none"}
+                                       alt={"No cover art found"}/> : <div className={"h-96 flex flex-col items-center m-auto"}><BrokenImageIcon className={"flex flex-grow text-5xl"}/></div>}
+
                 </div>
                 <div className={"overflow-auto text-center"}>{game.title}</div>
             </div>
