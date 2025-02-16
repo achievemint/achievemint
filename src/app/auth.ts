@@ -1,21 +1,19 @@
-import SteamProvider, {PROVIDER_ID} from 'next-auth-steam'
+import SteamProvider, {STEAM_PROVIDER_ID} from 'next-auth-steam'
 
 import type {AuthOptions, Session} from 'next-auth'
 import type {NextRequest} from 'next/server'
 
-export function getAuthOptions(req?: NextRequest): AuthOptions {
+export function getAuthOptions(req: NextRequest): AuthOptions {
     return {
-        providers: req
-            ? [
-                SteamProvider(req, {
-                    clientSecret: process.env.STEAM_SECRET!,
-                    callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/callback`
-                })
-            ]
-            : [],
+        providers: [
+            SteamProvider(req, {
+                clientSecret: process.env.STEAM_SECRET!,
+                callbackUrl: `${process.env.NEXTAUTH_URL}/api/auth/callback`,
+            })
+        ],
         callbacks: {
             jwt({ token, account, profile }) {
-                if (account?.provider === PROVIDER_ID) {
+                if (account?.provider === STEAM_PROVIDER_ID) {
                     token.steam = profile
                 }
                 return token
