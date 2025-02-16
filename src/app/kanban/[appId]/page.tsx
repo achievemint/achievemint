@@ -14,8 +14,8 @@ export default function KanbanBoardPage(params: {params: Promise<{ appId: string
     const session = useSession()
     useEffect(() => {
         params.params.then((resp) => {
-            setAppId(resp.appId)
             if (session.status === "authenticated") {
+                setAppId(resp.appId)
                 getAchievementData({appId: resp.appId}, session.data).then((resp) => {
                     setAchievements(resp);
                 }).catch(() => router.push("/"))
