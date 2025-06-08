@@ -1,0 +1,26 @@
+{
+  "user": {
+    "name": "QaGamer4000",
+    "email": "123456@steamcommunity.com",
+    "image": "https://avatars.steamstatic.com/mock_img_full.jpg",
+    "steam": {
+      "steamid": "123456",
+      "communityvisibilitystate": 3,
+      "profilestate": 1,
+      "personaname": "QaGamer4000",
+      "profileurl": "https://steamcommunity.com/id/QaGamer4000/",
+      "avatar": "https://avatars.steamstatic.com/mock_data.jpg",
+      "avatarmedium": "https://avatars.steamstatic.com/mock_data_medium.jpg",
+      "avatarfull": "https://avatars.steamstatic.com/mock_data_full.jpg",
+      "avatarhash": "mock_data",
+      "personastate": 0,
+      "realname": "QA Smith",
+      "primaryclanid": "1234567890",
+      "timecreated": 1336241861,
+      "personastateflags": 0,
+      "loccountrycode": "US",
+      "locstatecode": "KY"
+    }
+  },
+  "expires": "3025-07-15T15:34:30.539Z"
+}
