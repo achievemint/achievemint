@@ -27,7 +27,7 @@ function UnlockDate (args:{date: number, unlocked: boolean}) {
 export default function AchievementCard({ achievement: {unlocked, icon, iconGray, name, description, unlockDate} }: AchievementCardProps): React.ReactElement {
     const backgroundColor = unlocked ? 'bg-green-500' : 'bg-gray-500';
     return (
-        <div className={"border-4 flex rounded-md border-blue-400 p-1 " + backgroundColor}>
+        <div className={"border-4 flex rounded-md border-blue-400 p-1 " + backgroundColor} data-test={"achievement-card"}>
             <div className={"relative w-12 h-12"}>
                 <Image fill={true}
                        src={unlocked ? icon : iconGray}
