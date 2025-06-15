@@ -2,7 +2,7 @@
 import getAchievementData from "@/services/getAchievementData";
 import {useEffect, useState} from "react";
 import {CircularProgress} from "@mui/material";
-import KanbanBoard from "@/components/kanban/kanban-board/kaban-board";
+import KanbanBoard from "@/components/kanban/kanban-board/kanban-board";
 import {Achievement} from "@/entities/Achievement";
 import {useRouter} from "next/navigation";
 import {useSession} from "next-auth/react";
