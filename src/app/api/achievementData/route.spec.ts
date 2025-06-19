@@ -38,8 +38,7 @@ describe('achievementData API route', () => {
     );
     
     expect(responseData).toEqual({
-      response1: { playerStats: { achievements: [] } },
-      response2: { game: { availableGameStats: { achievements: [] } } }
+      achievements: [],
     });
   });
 
