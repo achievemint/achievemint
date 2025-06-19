@@ -26,5 +26,10 @@ export async function GET(request: Request) {
         })
     };
 
-    return Response.json(responseData);
+    return Response.json(responseData, {
+        headers: {
+            // 900 seconds is 15 minutes
+            'Cache-Control': 'public, max-age=900, s-maxage=900'
+        }
+    });
 }
