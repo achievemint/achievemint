@@ -3,7 +3,15 @@ import KanbanSection from "@/components/kanban/kanban-section/kanban-section";
 import LockIcon from "@mui/icons-material/Lock";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import {DndContext, DragEndEvent, DragOverlay} from "@dnd-kit/core";
+import {
+    DndContext,
+    DragEndEvent,
+    DragOverlay,
+    KeyboardSensor,
+    MouseSensor,
+    PointerSensor,
+    TouchSensor
+} from "@dnd-kit/core";
 import {useState} from "react";
 import KanbanCard from "@/components/kanban/kanban-card/kanban-card";
 import {useInProgress} from "@/hooks/useInProgress";
@@ -48,7 +56,9 @@ export default function KanbanBoard({achievements, gameId}: { achievements: Achi
 
     return (
         <div className={"flex justify-around max-h-full gap-20 ml-20 mr-20"}>
-            <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+            <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart} sensors={[
+                KeyboardSensor, MouseSensor, PointerSensor, TouchSensor
+            ].map(sensor => { return {sensor, options: {}}})}>
                 <KanbanSection id={SectionKey.LOCKED} achievements={locked} title={"Locked Achievements"} icon={<LockIcon/>}/>
                 <KanbanSection id={SectionKey.IN_PROGRESS} achievements={inProgressAchievements} title={"In Progress"}
                                icon={<SportsEsportsIcon/>}/>
