@@ -1,6 +1,7 @@
 import React from 'react';
 import KanbanBoard from './kanban-board';
 import {Achievement} from '@/entities/Achievement';
+import {KanbanBoardInteractor} from "@/components/kanban/kanban-board/kanban-board-interactor";
 
 describe('KanbanBoard Component', () => {
     const mockAchievements: Achievement[] = [
@@ -82,6 +83,7 @@ describe('KanbanBoard Component', () => {
     ];
 
     const gameId = 'test-game-123';
+    const interactor = new KanbanBoardInteractor();
 
     beforeEach(() => {
         cy.viewport(1920, 1080);
@@ -98,104 +100,121 @@ describe('KanbanBoard Component', () => {
         cy.mount(<KanbanBoard achievements={mockAchievements} gameId={gameId}/>);
     });
 
-    it('should render all three sections in order', () => {
-        cy.byDataTestId('kanban-section')
+    it('Should have three sections', () => {
+        interactor.getAllSections()
             .should('have.length', 3)
+    })
+
+    it('should render sections in order', () => {
+        interactor.getAllSections()
             .first()
             .contains("Locked Achievements")
             .should("be.visible");
 
-        cy.byDataTestId('kanban-section')
+        interactor.getAllSections()
             .eq(1)
             .contains("In Progress")
             .should('be.visible');
 
-        cy.byDataTestId('kanban-section')
-            .should('have.length', 3)
+        interactor.getAllSections()
             .last()
             .contains("Unlocked Achievements")
             .should("be.visible");
     });
 
     it('should display correct counts and content in each section', () => {
-        // Check Locked section
-        cy.byDataTestId('kanban-section').first().within(() => {
+        interactor.getLockedSection().within(() => {
             cy.byDataTestId('section-count').should('contain', '2');
 
             cy.byDataTestId('achievement-card').should('have.length', 2);
 
-            cy.byDataTestId('achievement-card').first().should('contain', 'locked1');
-            cy.byDataTestId('achievement-card').first().should('contain', 'First locked achievement');
-            cy.byDataTestId('achievement-card').last().should('contain', 'locked2');
-            cy.byDataTestId('achievement-card').last().should('contain', 'Second locked achievement');
+            cy.byDataTestId('achievement-card')
+                .first()
+                .should('contain', 'locked1')
+                .should('contain', 'First locked achievement');
+
+            cy.byDataTestId('achievement-card')
+                .last()
+                .should('contain', 'locked2')
+                .should('contain', 'Second locked achievement');
         });
 
-        // Check In Progress section
-        cy.byDataTestId('kanban-section').eq(1).within(() => {
+        interactor.getInProgressSection().within(() => {
             cy.byDataTestId('section-count').should('contain', '3');
 
             cy.byDataTestId('achievement-card').should('have.length', 3);
 
-            cy.byDataTestId('achievement-card').eq(0).should('contain', 'inprogress1');
-            cy.byDataTestId('achievement-card').eq(0).should('contain', 'First in progress achievement');
-            cy.byDataTestId('achievement-card').eq(1).should('contain', 'inprogress2');
-            cy.byDataTestId('achievement-card').eq(1).should('contain', 'Second in progress achievement');
-            cy.byDataTestId('achievement-card').eq(2).should('contain', 'inprogress3');
-            cy.byDataTestId('achievement-card').eq(2).should('contain', 'Third in progress achievement');
+            cy.byDataTestId('achievement-card')
+                .eq(0)
+                .should('contain', 'inprogress1')
+                .should('contain', 'First in progress achievement');
+
+            cy.byDataTestId('achievement-card')
+                .eq(1)
+                .should('contain', 'inprogress2')
+                .should('contain', 'Second in progress achievement');
+
+            cy.byDataTestId('achievement-card')
+                .eq(2)
+                .should('contain', 'inprogress3')
+                .should('contain', 'Third in progress achievement');
         });
 
-        // Check Unlocked section
-        cy.byDataTestId('kanban-section').last().within(() => {
+        interactor.getUnlockedSection().within(() => {
             cy.byDataTestId('section-count').should('contain', '4');
 
-            cy.byDataTestId('achievement-card').should('have.length', 4);
+            cy.byDataTestId('achievement-card')
+                .should('have.length', 4);
 
-            cy.byDataTestId('achievement-card').eq(0).should('contain', 'unlocked1');
-            cy.byDataTestId('achievement-card').eq(0).should('contain', 'First unlocked achievement');
-            cy.byDataTestId('achievement-card').eq(1).should('contain', 'unlocked2');
-            cy.byDataTestId('achievement-card').eq(1).should('contain', 'Second unlocked achievement');
-            cy.byDataTestId('achievement-card').eq(2).should('contain', 'unlocked3');
-            cy.byDataTestId('achievement-card').eq(2).should('contain', 'Third unlocked achievement');
-            cy.byDataTestId('achievement-card').eq(3).should('contain', 'unlocked4');
-            cy.byDataTestId('achievement-card').eq(3).should('contain', 'Fourth unlocked achievement');
+            cy.byDataTestId('achievement-card')
+                .eq(0)
+                .should('contain', 'unlocked1')
+                .should('contain', 'First unlocked achievement');
+
+            cy.byDataTestId('achievement-card')
+                .eq(1)
+                .should('contain', 'unlocked2')
+                .should('contain', 'Second unlocked achievement');
+
+            cy.byDataTestId('achievement-card')
+                .eq(2)
+                .should('contain', 'unlocked3')
+                .should('contain', 'Third unlocked achievement');
+
+            cy.byDataTestId('achievement-card')
+                .eq(3)
+                .should('contain', 'unlocked4')
+                .should('contain', 'Fourth unlocked achievement');
         });
     });
 
-    describe.only('Drag & Drop', () => {
+    describe('Drag & Drop', () => {
         it('should be able to drag from locked to in progress', () => {
-            cy.byDataTestId('kanban-section')
+            interactor.getInProgressSection()
+                .byDataTestId('draggable-card')
                 .first()
-                .within(() => {
-                    cy.byDataTestId('draggable-card')
-                        .first()
-                        .then(subject => {
-                            const initialRect = subject.get(0).getBoundingClientRect();
-                            const [x, y] = [400, 0];
-                            console.log(initialRect)
-                            cy.wrap(subject)
-                                .trigger('mousedown', {force: true})
-                                .wait(100)
-                                .trigger('mousemove', {
-                                    force: true,
-                                    clientX: Math.floor(
-                                        initialRect.left + initialRect.width / 2 + x / 2
-                                    ),
-                                    clientY: Math.floor(
-                                        initialRect.top + initialRect.height / 2 + y / 2
-                                    ),
-                                })
-                                .trigger('mousemove', {
-                                    force: true,
-                                    clientX: Math.floor(initialRect.left + initialRect.width / 2 + x),
-                                    clientY: Math.floor(initialRect.top + initialRect.height / 2 + y),
-                                })
-                                .wait(5000)
-                                .trigger('mouseup', {force: true})
+                .then(subject => {
+                    const initialRect = subject.get(0).getBoundingClientRect();
+                    const [x, y] = [400, 0];
+                    console.log(initialRect)
+                    cy.wrap(subject)
+                        .trigger('mousedown', {force: true})
+                        .trigger('mousemove', {
+                            force: true,
+                            clientX: Math.floor(
+                                initialRect.left + initialRect.width / 2 + x / 2
+                            ),
+                            clientY: Math.floor(
+                                initialRect.top + initialRect.height / 2 + y / 2
+                            ),
                         })
-
+                        .trigger('mousemove', {
+                            force: true,
+                            clientX: Math.floor(initialRect.left + initialRect.width / 2 + x),
+                            clientY: Math.floor(initialRect.top + initialRect.height / 2 + y),
+                        })
+                        .trigger('mouseup', {force: true})
                 })
-
-
         });
     })
 });
