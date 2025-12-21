@@ -7,7 +7,7 @@ import getGames from "@/services/getGames";
 import Image from "next/image";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
-import {useSession} from "next-auth/react";
+import {useAuthenticatedSession} from "@/hooks/useAuthenticatedSession";
 
 function GameCard({game}: { game: Game }): React.ReactElement {
 
@@ -22,7 +22,9 @@ function GameCard({game}: { game: Game }): React.ReactElement {
                                        src={game.cover_img_url}
                                        onError={() => setError(true)}
                                        className={"rounded-sm border-none"}
-                                       alt={"No cover art found"}/> : <div className={"h-96 flex flex-col items-center m-auto"}><BrokenImageIcon className={"flex flex-grow text-5xl"}/></div>}
+                                       alt={"No cover art found"}/> :
+                        <div className={"h-96 flex flex-col items-center m-auto"}><BrokenImageIcon
+                            className={"flex flex-grow text-5xl"}/></div>}
 
                 </div>
                 <div className={"overflow-auto text-center"}>{game.title}</div>
@@ -35,11 +37,11 @@ export default function GameListPage() {
     const [games, setGames] = useState<Array<Game> | null>(null)
     const router = useRouter();
 
-    const session = useSession()
-    
+    const session = useAuthenticatedSession()
+
     useEffect(() => {
-        if (session.status == 'authenticated') {
-            getGames(session.data)
+        if (session) {
+            getGames(session)
                 .then(setGames);
         }
     }, [router, session, setGames]);

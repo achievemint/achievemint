@@ -5,26 +5,26 @@ import {CircularProgress} from "@mui/material";
 import KanbanBoard from "@/components/kanban/kanban-board/kanban-board";
 import {Achievement} from "@/entities/Achievement";
 import {useRouter} from "next/navigation";
-import {useSession} from "next-auth/react";
+import {useAuthenticatedSession} from "@/hooks/useAuthenticatedSession";
 
-export default function KanbanBoardPage(params: {params: Promise<{ appId: string}>}) {
+export default function KanbanBoardPage(params: { params: Promise<{ appId: string }> }) {
     const [achievements, setAchievements] = useState<Array<Achievement> | null>(null)
     const [appId, setAppId] = useState<string | null>(null)
     const router = useRouter();
-    const session = useSession()
+    const session = useAuthenticatedSession();
     useEffect(() => {
-        params.params.then((resp) => {
-            if (session.status === "authenticated") {
+        if (session) {
+            params.params.then((resp) => {
                 setAppId(resp.appId)
-                getAchievementData({appId: resp.appId}, session.data).then((resp) => {
+                getAchievementData({appId: resp.appId}, session).then((resp) => {
                     setAchievements(resp);
                 }).catch(() => router.push("/"))
-            }
-        })
+            })
+        }
     }, [params, router, session, setAppId]);
 
     if (!!achievements && !!appId) {
-        return <KanbanBoard achievements={achievements} gameId={appId} />
+        return <KanbanBoard achievements={achievements} gameId={appId}/>
     }
 
     return (
