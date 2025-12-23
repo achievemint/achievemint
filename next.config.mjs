@@ -8,6 +8,14 @@ const nextConfig = {
                 hostname: 'steamcdn-a.akamaihd.net',
                 pathname: '/steam*/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'avatars.akamai.steamstatic.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'avatars.steamstatic.com',
+            },
         ],
     },
 };
