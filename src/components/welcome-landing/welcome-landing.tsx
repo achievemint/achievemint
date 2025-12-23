@@ -70,7 +70,7 @@ export default function Home() {
                 <Paper elevation={3} className="p-6 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
                         <SportsEsportsIcon color="primary" sx={{ fontSize: 40 }} />
                         <Typography variant="h6" className="text-gray-400 uppercase tracking-wider text-sm">Games Owned</Typography>
-                        <Typography variant="h4" className="font-bold">
+                        <Typography variant="h4" className="font-bold" id="total-games">
                             {stats ? stats.gameCount : <CircularProgress size="1.5rem" />}
                         </Typography>
                     </Paper>
@@ -78,8 +78,8 @@ export default function Home() {
                     <Paper elevation={3} className="p-6 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
                         <AccessTimeIcon color="primary" sx={{ fontSize: 40 }} />
                         <Typography variant="h6" className="text-gray-400 uppercase tracking-wider text-sm">Total Playtime</Typography>
-                        <Typography variant="h4" className="font-bold">
-                            {stats ? `${stats.totalPlaytime} hrs` : <CircularProgress size="1.5rem" />}
+                        <Typography variant="h4" className="font-bold" id="total-playtime">
+                        {stats ? `${stats.totalPlaytime} hrs` : <CircularProgress size="1.5rem" />}
                         </Typography>
                     </Paper>
                 </div>

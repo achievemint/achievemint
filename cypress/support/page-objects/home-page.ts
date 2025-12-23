@@ -17,7 +17,7 @@ export class HomePage {
    * Get the welcome message element
    */
   getWelcomeMessage() {
-    return cy.contains('Welcome to Achievemint!');
+    return cy.contains('Achievemint');
   }
 
   /**
@@ -26,9 +26,9 @@ export class HomePage {
    */
   getUserGreeting(username?: string) {
     if (username) {
-      return cy.contains(`Hello, ${username}!`);
+      return cy.contains(`Welcome back, ${username}!`);
     }
-    return cy.contains(/Hello, .+!/);
+    return cy.contains(/Welcome back, .+!/);
   }
 
   /**
@@ -42,7 +42,21 @@ export class HomePage {
    * Get the view game list button
    */
   getViewGameListButton() {
-    return cy.contains('View game list');
+    return cy.contains('Go to Game List');
+  }
+
+  /**
+   * Get the games owned paper element
+   */
+  getGamesOwnedCard() {
+    return cy.contains(/Games Owned/);
+  }
+
+  /**
+   * Get the total playtime paper element
+   */
+  getTotalPlaytimeCard() {
+    return cy.contains(/Total Playtime/);
   }
 
   /**
