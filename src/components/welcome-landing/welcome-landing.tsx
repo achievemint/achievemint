@@ -2,6 +2,7 @@
 
 import {Button, CircularProgress, Paper, Typography} from "@mui/material";
 import Link from "next/link";
+import Image from "next/image";
 import {signIn, useSession} from "next-auth/react";
 import React, {useEffect, useState} from "react";
 import getGames from "@/services/getGames";
@@ -57,10 +58,13 @@ export default function Home() {
             <div className="max-w-4xl w-full flex flex-col gap-8">
                 <div className="flex flex-col items-center gap-4">
                     {avatar && (
-                        <img 
+                        <Image 
                             src={avatar} 
                             alt={username || "Avatar"} 
-                            className="w-24 h-24 rounded-full border-4 border-primary shadow-lg"
+                            width={96}
+                            height={96}
+                            className="rounded-full border-4 border-primary shadow-lg"
+                            priority
                         />
                     )}
                     <Typography variant="h3" className="font-bold">Welcome back, {username}!</Typography>
