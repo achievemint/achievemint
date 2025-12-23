@@ -81,7 +81,7 @@ export default function GameListPage() {
     useEffect(() => {
         if (session) {
             getGames(session)
-                .then(setGames);
+                .then(res => setGames(res.games));
         }
     }, [router, session, setGames]);
 
