@@ -20,7 +20,10 @@ enum SectionKey {
     LOCKED = "locked", IN_PROGRESS = "inprogress", UNLOCKED = "unlocked"
 }
 
-export default function KanbanBoard({achievements, gameId}: { achievements: Achievement[], gameId: string }): React.ReactElement {
+export default function KanbanBoard({achievements, gameId}: {
+    achievements: Achievement[],
+    gameId: string
+}): React.ReactElement {
     const locked: Array<Achievement> = []
     const unlocked: Array<Achievement> = []
     const inProgressAchievements: Array<Achievement> = []
@@ -55,18 +58,22 @@ export default function KanbanBoard({achievements, gameId}: { achievements: Achi
     }
 
     return (
-        <div className={"flex justify-around max-h-full gap-20 ml-20 mr-20"}>
+        <div className={"flex justify-around max-h-full w-full gap-20 ml-20 mr-20"}>
             <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart} sensors={[
                 KeyboardSensor, MouseSensor, PointerSensor, TouchSensor
-            ].map(sensor => { return {sensor, options: {}}})}>
-                <KanbanSection id={SectionKey.LOCKED} achievements={locked} title={"Locked Achievements"} icon={<LockIcon/>}/>
+            ].map(sensor => {
+                return {sensor, options: {}}
+            })}>
+                <KanbanSection id={SectionKey.LOCKED} achievements={locked} title={"Locked Achievements"}
+                               icon={<LockIcon/>}/>
                 <KanbanSection id={SectionKey.IN_PROGRESS} achievements={inProgressAchievements} title={"In Progress"}
                                icon={<SportsEsportsIcon/>}/>
-                <KanbanSection id={SectionKey.UNLOCKED} achievements={unlocked} title={"Unlocked Achievements"} icon={<LockOpenIcon/>}/>
+                <KanbanSection id={SectionKey.UNLOCKED} achievements={unlocked} title={"Unlocked Achievements"}
+                               icon={<LockOpenIcon/>}/>
                 <DragOverlay>
                     {activeAchievementDrag ? (
                         <KanbanCard achievement={activeAchievementDrag}/>
-                    ): null}
+                    ) : null}
                 </DragOverlay>
             </DndContext>
         </div>
