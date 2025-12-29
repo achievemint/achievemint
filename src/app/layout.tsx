@@ -31,9 +31,19 @@ export default async function RootLayout({
     return (
         <html lang="en" className={"h-full"}>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
+        <header>
+            <link rel="stylesheet"
+                  href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css"/>
+        </header>
         <div className={"flex flex-row grow h-full w-full"}>
+            <a className="github-fork-ribbon before:bg-[#333]" href="https://github.com/achievemint/achievemint"
+               target={"_blank"}
+               data-ribbon="Fork me on GitHub"
+               title="Fork me on GitHub">Fork me on GitHub</a>
             <div className={"flex h-full w-fit"}><SideNav session={session}/></div>
-            <div className={"flex h-full grow overflow-y-auto p-5"}><Providers>{children}</Providers></div>
+            <div className={"flex h-full grow overflow-y-auto p-5 scrollbar-hide"}>
+                <Providers>{children}</Providers>
+            </div>
         </div>
         </body>
         </html>
