@@ -58,7 +58,8 @@ export default function KanbanBoard({achievements, gameId}: {
     }
 
     return (
-        <div className={"flex justify-around max-h-full w-full gap-1 lg:gap-20 lg:ml-20 lg:mr-20"}>
+        <div
+            className={"flex justify-around max-h-full w-full landscape:max-lg:max-w-full gap-1 lg:gap-20 lg:ml-20 lg:mr-20"}>
             <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart} sensors={[
                 KeyboardSensor, MouseSensor, PointerSensor, TouchSensor
             ].map(sensor => {
