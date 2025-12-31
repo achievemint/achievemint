@@ -31,7 +31,7 @@ function SideNavButton({link: {href, label, icon}, expanded}: { link: SideNavLin
                 transitionStyle,
                 {
                     "pl-8 pr-8 pt-4 pb-4 text-2xl": expanded,
-                    "aspect-square flex flex-col h-full": !expanded
+                    "aspect-square landscape:max-lg:aspect-auto landscape:max-lg:pl-4 landscape:max-lg:pr-4 flex flex-col h-full": !expanded
                 })}>
             <div className={"m-auto"}>{icon}</div>
             {label ? <p className={classNames(transitionStyle, {
@@ -50,7 +50,7 @@ export function SideNav({session}: SideNavProps) {
 
 
     return <div
-        className={classNames("flex grow flex-col h-full bg-amber-800 items-center justify-start gap-7",
+        className={classNames("flex grow landscape:max-sm:p-1 landscape:max-lg:flex-row flex-col landscape:max-lg:w-full lg:h-full bg-amber-800 items-center justify-start gap-7",
             transitionStyle,
             {
                 "p-8": expanded,
@@ -61,14 +61,15 @@ export function SideNav({session}: SideNavProps) {
                 'text-4xl': expanded,
                 'text-xs': !expanded
             })}>Achievemint</h1>
-        <div className={"w-full flex grow flex-col gap-10"}>{
+        <div className={"w-full flex grow landscape:max-lg:flex-row flex-col gap-10"}>{
             links.map((link, index) => <SideNavButton
                 key={index}
                 expanded={expanded}
                 link={link}/>)
         }</div>
-        <div className={"rotate-90"} onClick={() => setExpanded(!expanded)}>{expanded ? <UnfoldLessOutlined/> :
+        <div className={"rotate-90"} onClick={() => setExpanded(!expanded)}>{expanded ?
+            <UnfoldLessOutlined/> :
             <UnfoldMoreOutlined/>}</div>
-        <div>{session ? <SignOut/> : <SignIn/>}</div>
+        <div className={"landscape:min-w-max"}>{session ? <SignOut/> : <SignIn/>}</div>
     </div>
 }

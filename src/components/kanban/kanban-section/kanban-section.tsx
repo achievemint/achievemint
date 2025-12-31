@@ -15,11 +15,11 @@ export default function KanbanSection({achievements, title, icon, id}: KanbanSec
     const {setNodeRef, active, isOver} = useDroppable({id});
     const dragOverStyle = (active?.id !== id && isOver) ? "bg-green-800" : "";
     return (
-        <div ref={setNodeRef} className={"flex flex-col rounded-md grow basis-0 border-blue-400 border-8 p-3"}
+        <div ref={setNodeRef} className={"flex flex-col rounded-md grow basis-0 border-blue-400 border-8 lg:p-3 p-1"}
              data-test={"kanban-section"}>
             <div className={"flex items-center"} data-test={"kanban-header"}>
                 {icon}
-                <h1 className="text-3xl font-bold flex grow">{title}</h1>
+                <h1 className="lg:text-3xl sm:text-xs font-bold flex grow">{title}</h1>
                 <Avatar className={"flex self-end"} data-test={"section-count"}>{achievements.length}</Avatar>
             </div>
 

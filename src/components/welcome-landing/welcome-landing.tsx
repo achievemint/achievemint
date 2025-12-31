@@ -54,7 +54,8 @@ export default function Home() {
     }
 
     return (
-        <div className="w-full h-full flex flex-col justify-center p-4 lg:gap-8 gap-4 max-w-4xl m-auto">
+        <div
+            className="w-full h-full landscape:max-lg:h-min flex flex-col justify-center lg:p-4 lg:gap-8 gap-4 landscape:max-lg:gap-1 max-w-4xl m-auto">
             <div className="flex flex-col items-center gap-4">
                 {avatar && (
                     <Image
@@ -75,9 +76,9 @@ export default function Home() {
                             align={"center"} classes={"sm:text-sm"}>Welcome back, {username}!</Typography>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex items-center portrait:max-sm:flex-col justify-center flex-row gap-6">
                 <Paper elevation={3}
-                       className="p-6 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
+                       className="lg:p-10 lg:w-1/2 p-3 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
                     <SportsEsportsIcon color="primary" sx={{fontSize: 40}}/>
                     <Typography variant="h6" className="text-gray-400 uppercase tracking-wider text-sm">Games
                         Owned</Typography>
@@ -87,7 +88,7 @@ export default function Home() {
                 </Paper>
 
                 <Paper elevation={3}
-                       className="p-6 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
+                       className="lg:p-10 lg:w-1/2 p-3 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
                     <AccessTimeIcon color="primary" sx={{fontSize: 40}}/>
                     <Typography variant="h6" className="text-gray-400 uppercase tracking-wider text-sm">Total
                         Playtime</Typography>
