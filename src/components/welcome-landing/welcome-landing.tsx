@@ -54,47 +54,55 @@ export default function Home() {
     }
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center p-4">
-            <div className="max-w-4xl w-full flex flex-col gap-8">
-                <div className="flex flex-col items-center gap-4">
-                    {avatar && (
-                        <Image 
-                            src={avatar} 
-                            alt={username || "Avatar"} 
-                            width={96}
-                            height={96}
-                            className="rounded-full border-4 border-primary shadow-lg"
-                            priority
-                        />
-                    )}
-                    <Typography variant="h3" className="font-bold">Welcome back, {username}!</Typography>
-                </div>
+        <div className="w-full h-full flex flex-col justify-center p-4 lg:gap-8 gap-4 max-w-4xl m-auto">
+            <div className="flex flex-col items-center gap-4">
+                {avatar && (
+                    <Image
+                        src={avatar}
+                        alt={username || "Avatar"}
+                        width={96}
+                        height={96}
+                        className="rounded-full border-4 border-primary shadow-lg"
+                        priority
+                    />
+                )}
+                <Typography variant="h3"
+                            sx={{
+                                fontSize: {
+                                    xs: "2rem"
+                                }
+                            }}
+                            align={"center"} classes={"sm:text-sm"}>Welcome back, {username}!</Typography>
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Paper elevation={3} className="p-6 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
-                        <SportsEsportsIcon color="primary" sx={{ fontSize: 40 }} />
-                        <Typography variant="h6" className="text-gray-400 uppercase tracking-wider text-sm">Games Owned</Typography>
-                        <Typography variant="h4" className="font-bold" id="total-games">
-                            {stats ? stats.gameCount : <CircularProgress size="1.5rem" />}
-                        </Typography>
-                    </Paper>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Paper elevation={3}
+                       className="p-6 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
+                    <SportsEsportsIcon color="primary" sx={{fontSize: 40}}/>
+                    <Typography variant="h6" className="text-gray-400 uppercase tracking-wider text-sm">Games
+                        Owned</Typography>
+                    <Typography variant="h4" className="font-bold" id="total-games">
+                        {stats ? stats.gameCount : <CircularProgress size="1.5rem"/>}
+                    </Typography>
+                </Paper>
 
-                    <Paper elevation={3} className="p-6 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
-                        <AccessTimeIcon color="primary" sx={{ fontSize: 40 }} />
-                        <Typography variant="h6" className="text-gray-400 uppercase tracking-wider text-sm">Total Playtime</Typography>
-                        <Typography variant="h4" className="font-bold" id="total-playtime">
-                        {stats ? `${stats.totalPlaytime} hrs` : <CircularProgress size="1.5rem" />}
-                        </Typography>
-                    </Paper>
-                </div>
+                <Paper elevation={3}
+                       className="p-6 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
+                    <AccessTimeIcon color="primary" sx={{fontSize: 40}}/>
+                    <Typography variant="h6" className="text-gray-400 uppercase tracking-wider text-sm">Total
+                        Playtime</Typography>
+                    <Typography variant="h4" className="font-bold" id="total-playtime">
+                        {stats ? `${stats.totalPlaytime} hrs` : <CircularProgress size="1.5rem"/>}
+                    </Typography>
+                </Paper>
+            </div>
 
-                <div className="flex justify-center mt-4">
-                    <Link href="/games" passHref>
-                        <Button variant="contained" size="large" className="px-12 py-3 text-lg font-semibold">
-                            Go to Game List
-                        </Button>
-                    </Link>
-                </div>
+            <div className="flex justify-center mt-4">
+                <Link href="/games" passHref>
+                    <Button variant="contained" size="large" className="px-12 py-3 text-lg font-semibold">
+                        Go to Game List
+                    </Button>
+                </Link>
             </div>
         </div>
     );
