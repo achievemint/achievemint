@@ -1,12 +1,9 @@
 name: Build and Test Application
 
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -37,7 +34,7 @@ jobs:
       fail-fast: false
       matrix:
         # Run e2e and component tests in parallel
-        test-type: ['e2e', 'component']
+        test-type: [ 'e2e', 'component' ]
 
     steps:
       - uses: actions/checkout@v4

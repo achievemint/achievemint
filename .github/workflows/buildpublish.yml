@@ -10,8 +10,8 @@ jobs:
   next-build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
       - run: npm ci
       - run: npm run build
       - name: Upload Next build
