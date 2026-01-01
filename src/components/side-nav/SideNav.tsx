@@ -6,6 +6,7 @@ import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import {Home, UnfoldLessOutlined, UnfoldMoreOutlined, VideogameAsset} from "@mui/icons-material";
 import classNames from "classnames";
+import {useWindowSize} from "@/hooks/useWindowSize";
 
 interface SideNavProps {
     session: Session | null
@@ -42,12 +43,14 @@ function SideNavButton({link: {href, label, icon}, expanded}: { link: SideNavLin
 }
 
 export function SideNav({session}: SideNavProps) {
+    const width = useWindowSize();
     const [expanded, setExpanded] = useState(true);
 
     useEffect(() => {
-        setExpanded(window.innerWidth > 1000)
-    }, [setExpanded])
-
+        if (width) {
+            setExpanded(width > 1000);
+        }
+    }, [width, setExpanded]);
 
     return <div
         className={classNames("flex grow landscape:max-sm:p-1 landscape:max-lg:flex-row flex-col landscape:max-lg:w-full lg:h-full bg-amber-800 items-center justify-start gap-7",
