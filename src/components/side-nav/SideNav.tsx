@@ -28,11 +28,11 @@ const transitionStyle: string = "transition-all duration-700 ease-in-out";
 function SideNavButton({link: {href, label, icon}, expanded}: { link: SideNavLink, expanded: boolean }) {
     return <Link href={href} className={"no-underline"}>
         <div
-            className={classNames("bg-black text-white w-full text-center border-8 rounded-2xl hover:bg-gray-900 hover:italic",
+            className={classNames("bg-black text-white w-full text-center border-8 landscape:max-lg:border-4 rounded-2xl hover:bg-gray-900 hover:italic",
                 transitionStyle,
                 {
                     "pl-8 pr-8 pt-4 pb-4 text-2xl": expanded,
-                    "aspect-square landscape:max-lg:aspect-auto landscape:max-lg:pl-4 landscape:max-lg:pr-4 flex flex-col h-full": !expanded
+                    "aspect-square landscape:max-lg:aspect-auto landscape:max-lg:pl-6 landscape:max-lg:pr-6 flex flex-col h-full": !expanded
                 })}>
             <div className={"m-auto"}>{icon}</div>
             {label ? <p className={classNames(transitionStyle, {
@@ -57,7 +57,7 @@ export function SideNav({session}: SideNavProps) {
             transitionStyle,
             {
                 "p-8": expanded,
-                "p-4": !expanded
+                "p-4 landscape:p-1": !expanded
             })}>
         <h1 className={classNames("font-bold",
             transitionStyle, {

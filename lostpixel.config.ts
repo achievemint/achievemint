@@ -8,7 +8,7 @@ export const config: CustomProjectConfig = {
         pages: [
             {
                 path: '/', name: 'landing',
-                breakpoints: [390, 640, 1024]
+                breakpoints: [390, 640, 1024, 2560]
             },
             {
                 path: '/',
