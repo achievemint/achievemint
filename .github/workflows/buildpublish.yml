@@ -12,7 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
-      - run: npm ci
       - run: npm run build
       - name: Upload Next build
         uses: actions/upload-artifact@v4
