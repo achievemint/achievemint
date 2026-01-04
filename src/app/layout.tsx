@@ -5,6 +5,7 @@ import {getServerSession} from "next-auth";
 import React from "react";
 import {Providers} from "@/app/providers";
 import {SideNav} from "@/components/side-nav/SideNav";
+import classNames from "classnames";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -30,7 +31,7 @@ export default async function RootLayout({
     const session = await getServerSession()
     return (
         <html lang="en" className={"h-full"}>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
+        <body className={classNames('antialiased h-full', geistSans, geistMono)}>
         <header>
             <link rel="stylesheet"
                   href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css"/>

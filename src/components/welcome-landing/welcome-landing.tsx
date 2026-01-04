@@ -42,7 +42,11 @@ export default function Home() {
     if (status === 'unauthenticated') {
         return (
             <div className="w-full h-full flex flex-col items-center justify-center gap-8">
-                <Typography variant="h2" className="font-bold text-center">Achievemint</Typography>
+                <Typography sx={(theme) => ({
+                    [theme.breakpoints.only('xs')]: {
+                        fontSize: '3rem',
+                    }
+                })} variant="h2">Achievemint</Typography>
                 <Typography variant="h5" className="text-gray-400 text-center max-w-md">
                     Track your Steam achievements and manage your backlog with ease.
                 </Typography>
