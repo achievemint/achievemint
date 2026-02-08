@@ -17,15 +17,15 @@ function GameCard({game}: { game: Game }): React.ReactElement {
     return (
         <Link href={"/kanban/" + game.appId}>
             <div className={"flex flex-col w-60"}>
-                <div className={"relative w-60 h-96 bg-amber-800 rounded-sm"}>
+                <div className={"relative w-60 h-96 bg-amber-800 rounded-xs"}>
                     {!isError ? <Image fill={true}
                                        title={game.title}
                                        src={game.cover_img_url}
                                        onError={() => setError(true)}
-                                       className={"rounded-sm border-none"}
+                                       className={"rounded-xs border-none"}
                                        alt={"No cover art found"}/> :
                         <div className={"h-96 flex flex-col items-center m-auto"}><BrokenImageIcon
-                            className={"flex flex-grow text-5xl"}/></div>}
+                            className={"flex grow text-5xl"}/></div>}
 
                 </div>
                 <div className={"overflow-auto text-center"}>{game.title}</div>
@@ -106,7 +106,7 @@ export default function GameListPage() {
                         placeholder="Search games..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className={"w-full px-4 py-2 pr-10 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none text-black"}
+                        className={"w-full px-4 py-2 pr-10 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-hidden text-black"}
                     />
                     {searchQuery && (
                         <button

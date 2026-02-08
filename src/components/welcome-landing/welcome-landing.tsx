@@ -82,7 +82,7 @@ export default function Home() {
 
             <div className="flex items-center portrait:max-sm:flex-col justify-center flex-row gap-6">
                 <Paper elevation={3}
-                       className="lg:p-10 lg:w-1/2 p-3 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
+                       className="lg:p-10 lg:w-1/2 p-3 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-xs">
                     <SportsEsportsIcon color="primary" sx={{fontSize: 40}}/>
                     <Typography variant="h6" className="text-gray-400 uppercase tracking-wider text-sm">Games
                         Owned</Typography>
@@ -92,7 +92,7 @@ export default function Home() {
                 </Paper>
 
                 <Paper elevation={3}
-                       className="lg:p-10 lg:w-1/2 p-3 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-sm">
+                       className="lg:p-10 lg:w-1/2 p-3 flex flex-col items-center gap-2 bg-opacity-50 backdrop-blur-xs">
                     <AccessTimeIcon color="primary" sx={{fontSize: 40}}/>
                     <Typography variant="h6" className="text-gray-400 uppercase tracking-wider text-sm">Total
                         Playtime</Typography>
