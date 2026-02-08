@@ -31,7 +31,6 @@ describe('Home Page', () => {
 
     context('Authenticated User', () => {
         beforeEach(() => {
-            authFixture.clearAuthentication();
             authFixture.mockAuthenticationApi()
                 .as('session');
 
@@ -39,8 +38,8 @@ describe('Home Page', () => {
                 body: {
                     gameCount: 42,
                     games: [
-                        { appId: '1', title: 'Game 1', playTime: 600 }, // 10 hrs
-                        { appId: '2', title: 'Game 2', playTime: 300 }  // 5 hrs
+                        {appId: '1', title: 'Game 1', playTime: 600}, // 10 hrs
+                        {appId: '2', title: 'Game 2', playTime: 300}  // 5 hrs
                     ]
                 }
             }).as('getGames');
@@ -49,7 +48,6 @@ describe('Home Page', () => {
         });
 
         it('should display view game list button for authenticated users', () => {
-            cy.wait('@session');
             homePage
                 .assertAuthenticated()
                 .getViewGameListButton()
@@ -57,7 +55,6 @@ describe('Home Page', () => {
         });
 
         it('should display user greeting with username for authenticated users', () => {
-            cy.wait('@session');
             homePage
                 .getUserGreeting()
                 .should('be.visible')
@@ -65,12 +62,11 @@ describe('Home Page', () => {
         });
 
         it('should not display sign in card for authenticated users', () => {
-            cy.wait('@session');
             homePage.getSignInButton().should('not.exist');
         });
 
         it('should display games owned card with value for authenticated users', () => {
-            cy.wait(['@session', '@getGames']);
+            cy.wait('@getGames');
             homePage
                 .getGamesOwnedCard()
                 .should('be.visible')
@@ -80,7 +76,7 @@ describe('Home Page', () => {
         });
 
         it('should display total playtime card with value for authenticated users', () => {
-            cy.wait(['@session', '@getGames']);
+            cy.wait('@getGames');
             homePage
                 .getTotalPlaytimeCard()
                 .should('be.visible')
