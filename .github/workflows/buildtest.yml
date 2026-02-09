@@ -33,16 +33,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
+      - name: build
+        run: npm run build
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           install: false
           # Run e2e tests with start-server-and-test
-          start: npm run dev
+          start: npm run start -- -p 3472
           wait-on: 'http://localhost:3472'
           component: ${{ matrix.test-type == 'component' }}
           browser: chrome
           headed: false
+        env:
+          NEXTAUTH_SECRET: "BLAHHHHH"
+          NEXTAUTH_URL: "http://172.17.0.1:3471"
+          STEAM_SECRET: "TOP"
 
       # Upload screenshots when tests fail
       - name: Upload Cypress screenshots on failure
@@ -70,6 +76,7 @@ jobs:
         env:
           NEXTAUTH_SECRET: "BLAHHHHH"
           NEXTAUTH_URL: "http://172.17.0.1:3471"
+          STEAM_SECRET: "TOP"
 
       - name: Lost Pixel
         uses: lost-pixel/lost-pixel@v3.16.0

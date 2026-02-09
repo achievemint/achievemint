@@ -8,13 +8,8 @@ export class AuthFixture {
      * Clear authentication data
      */
     clearAuthentication() {
-        cy.window().then((win) => {
-            win.sessionStorage.removeItem('next-auth.session-token');
-            win.sessionStorage.removeItem('next-auth.session');
-        });
-
-        // Reload the page to apply the changes
-        cy.reload();
+        return cy.clearAllSessionStorage()
+            .clearAllCookies();
     }
 
     mockAuthenticationApi() {

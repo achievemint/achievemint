@@ -2,10 +2,12 @@ import {homePage} from '../support/page-objects/home-page';
 import {authFixture} from '../support/fixtures/auth-fixture';
 
 describe('Home Page', () => {
+    beforeEach(() => {
+        authFixture.clearAuthentication();
+    });
+
     context('Unauthenticated User', () => {
         beforeEach(() => {
-            authFixture.clearAuthentication();
-
             homePage.visit();
         });
 
