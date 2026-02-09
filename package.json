@@ -46,7 +46,7 @@
     "eslint": "9.14.0",
     "eslint-config-next": "^15.1.4",
     "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
+    "jest-environment-jsdom": "^30.2.0",
     "lost-pixel": "^3.22.0",
     "postcss": "^8",
     "postcss-loader": "^8.1.1",
