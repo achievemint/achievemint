@@ -20,7 +20,6 @@ describe('Kanban Board', () => {
 
     context('Authenticated User', () => {
         beforeEach(() => {
-            authFixture.clearAuthentication();
             authFixture.mockAuthenticationApi().as('session');
 
             cy.intercept('GET', '/api/achievementData*', {
