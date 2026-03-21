@@ -24,7 +24,7 @@
     "@mui/icons-material": "^7.3.9",
     "@mui/material": "^7.3.2",
     "classnames": "^2.5.1",
-    "next": "15.5.12",
+    "next": "15.5.14",
     "next-auth": "^4.24.13",
     "next-auth-steam": "^0.4.0",
     "react": "^19",
