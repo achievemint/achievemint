@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-node
       - name: lint
         run: npm run lint
@@ -31,7 +31,7 @@ jobs:
         test-type: [ 'e2e', 'component' ]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-node
       - name: build
         run: npm run build
@@ -52,7 +52,7 @@ jobs:
 
       # Upload screenshots when tests fail
       - name: Upload Cypress screenshots on failure
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: cypress-screenshots-${{ matrix.test-type }}
@@ -67,7 +67,7 @@ jobs:
     name: Lost Pixel
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-node
       - name: build
         run: npm run build
