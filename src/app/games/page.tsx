@@ -106,7 +106,7 @@ export default function GameListPage() {
                         placeholder="Search games..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className={"w-full px-4 py-2 pr-10 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-hidden text-black"}
+                        className={"w-full px-4 py-2 pr-10 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-hidden text-black dark:text-white"}
                     />
                     {searchQuery && (
                         <button
