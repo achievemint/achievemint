@@ -25,7 +25,7 @@
     "@mui/material": "^7.3.2",
     "classnames": "^2.5.1",
     "next": "15.5.15",
-    "next-auth": "^4.24.13",
+    "next-auth": "^4.24.14",
     "next-auth-steam": "^0.4.0",
     "react": "^19",
     "react-dom": "^19",
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@cypress/webpack-dev-server": "^4.1.0",
-    "@tailwindcss/postcss": "^4.2.1",
+    "@tailwindcss/postcss": "^4.2.2",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -54,9 +54,9 @@
     "start-server-and-test": "^2.1.5",
     "style-loader": "^4.0.0",
     "tailwindcss": "^4.1.18",
-    "ts-jest": "^29.4.6",
+    "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
     "typescript": "^5",
-    "webpack": "^5.105.4"
+    "webpack": "^5.106.2"
   }
 }
