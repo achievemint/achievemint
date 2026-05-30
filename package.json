@@ -43,7 +43,7 @@
     "@types/react-dom": "^19",
     "babel-loader": "^10.1.1",
     "css-loader": "^7.1.4",
-    "cypress": "^14.4.1",
+    "cypress": "^15.16.0",
     "eslint": "9.14.0",
     "eslint-config-next": "^15.1.4",
     "jest": "^29.7.0",
