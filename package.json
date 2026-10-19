@@ -53,9 +53,9 @@
     "start-server-and-test": "^2.1.5",
     "style-loader": "^4.0.0",
     "tailwindcss": "^4.1.18",
-    "ts-jest": "^29.4.14",
+    "ts-jest": "^29.4.15",
     "ts-node": "^10.9.2",
     "typescript": "^6",
-    "webpack": "^5.111.1"
+    "webpack": "^5.112.0"
   }
 }
