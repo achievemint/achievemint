@@ -20,10 +20,11 @@ export async function GET(request: Request) {
                 playTime: Number.parseInt(game?.playtime_forever?.toString() || '0'),
                 cover_img_url: `https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/library_600x900_2x.jpg`,
                 icon_img_url: `https://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_icon_url}.jpg`,
+                last_played: Number.parseInt(game?.rtime_last_played?.toString() || '0')
             }
 
             return mappedGame;
-        })
+        }).sort((a, b) => b.last_played - a.last_played)
     };
 
     return Response.json(responseData, {
